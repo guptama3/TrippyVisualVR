@@ -13,12 +13,15 @@ public class CreateSpheres : MonoBehaviour {
     GameObject FUR;
     GameObject FDL;
 
+    GameObject Cam;
+    GameObject CenterAnchor;
+
     float Scale = 1.0f;
 
 	// Use this for initialization
 	void Start () {
-
-        
+        Cam = GameObject.Find("OVRCameraRig");
+        CenterAnchor = GameObject.Find("CenterEyeAnchor");
 
         BUL = new GameObject("BUL");
         BDR = new GameObject("BDR");
@@ -75,13 +78,33 @@ public class CreateSpheres : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Scale -= 0.1f;
+            Scale = Scale * 0.9f;
             setScale(Scale);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            Scale += 0.1f;
+            Scale = Scale * 1.1f;
             setScale(Scale);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            Cam.transform.position = Cam.transform.position + CenterAnchor.transform.forward.normalized * Time.deltaTime * 3f * Scale;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            Cam.transform.position = Cam.transform.position - CenterAnchor.transform.forward.normalized * Time.deltaTime * 3f * Scale;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            Cam.transform.position = Cam.transform.position + CenterAnchor.transform.right.normalized * Time.deltaTime * 3f * Scale;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            Cam.transform.position = Cam.transform.position - CenterAnchor.transform.right.normalized * Time.deltaTime * 3f * Scale;
+        }
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            OVRManager.display.RecenterPose();
         }
     }
 
