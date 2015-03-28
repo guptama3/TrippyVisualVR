@@ -11,55 +11,62 @@ public class BUL : MonoBehaviour {
         StartCoroutine(move());
     }
 
+    public void OnReset()
+    {
+        StopAllCoroutines();
+        transform.position = OriginalPosition;
+        StartCoroutine(move());
+    }
+
     private IEnumerator move()
     {
-        int startFrame;
-        int endFrame;
+        float startFrame;
+        float endFrame;
 
         Vector3 startPosition;
         while (true)
         {
-            startFrame = Time.frameCount;
-            endFrame = startFrame + CreateSpheres.moveFrames;
+            transform.position = OriginalPosition;
+
+            Debug.Log("starting while loop");
+            startFrame = Time.time;
+            endFrame = Time.time + CreateSpheres.moveFrames;
             startPosition = transform.position;
             float t;
-            while (Time.frameCount <= endFrame)
+            while (Time.time <= endFrame)
             {
-                t = (float)(Time.frameCount - startFrame) / (endFrame - startFrame);
+                t = (float)(Time.time - startFrame) / (endFrame - startFrame);
                 transform.position = Vector3.Lerp(startPosition, startPosition + Vector3.back*transform.localScale.x, Mathf.SmoothStep(0.0f, 1.0f, t));
                 yield return null;
             }
 
-            for (int i = 0; i < CreateSpheres.stayFrames; i++)
-                yield return null;
+            yield return new WaitForSeconds(CreateSpheres.stayFrames);
 
-            startFrame = Time.frameCount;
-            endFrame = startFrame + CreateSpheres.moveFrames;
+            startFrame = Time.time;
+            endFrame = Time.time + CreateSpheres.moveFrames;
             startPosition = transform.position;
-            while (Time.frameCount <= endFrame)
+            while (Time.time <= endFrame)
             {
-                t = (float)(Time.frameCount - startFrame) / (endFrame - startFrame);
+                t = (float)(Time.time - startFrame) / (endFrame - startFrame);
                 transform.position = Vector3.Lerp(startPosition, startPosition + Vector3.up * transform.localScale.x, Mathf.SmoothStep(0.0f, 1.0f, t));
                 yield return null;
             }
 
-            for (int i = 0; i < CreateSpheres.stayFrames; i++)
-                yield return null;
+            yield return new WaitForSeconds(CreateSpheres.stayFrames);
 
-            startFrame = Time.frameCount;
-            endFrame = startFrame + CreateSpheres.moveFrames;
+            startFrame = Time.time;
+            endFrame = Time.time + CreateSpheres.moveFrames;
             startPosition = transform.position;
-            while (Time.frameCount <= endFrame)
+            while (Time.time <= endFrame)
             {
-                t = (float)(Time.frameCount - startFrame) / (endFrame - startFrame);
+                t = (float)(Time.time - startFrame) / (endFrame - startFrame);
                 transform.position = Vector3.Lerp(startPosition, startPosition + Vector3.left * transform.localScale.x, Mathf.SmoothStep(0.0f, 1.0f, t));
                 yield return null;
             }
 
-            for (int i = 0; i < CreateSpheres.stayFrames; i++)
-                yield return null;
+            yield return new WaitForSeconds(CreateSpheres.stayFrames);
 
-            transform.position = OriginalPosition;
+            
         }
     }
 }

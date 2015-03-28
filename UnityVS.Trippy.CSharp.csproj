@@ -116,6 +116,7 @@
     <Compile Include="Assets\OVR\Scripts\OVRManager.cs" />
     <Compile Include="Assets\OVR\Scripts\OVRPluginEvent.cs" />
     <Compile Include="Assets\OVR\Scripts\OVRTracker.cs" />
+    <Compile Include="Assets\OVR\Scripts\OVRUnityVersionChecker.cs" />
     <Compile Include="Assets\OVR\Scripts\OvrCapi.cs" />
     <Compile Include="Assets\OVR\Scripts\Util\OVRCrosshair.cs" />
     <Compile Include="Assets\OVR\Scripts\Util\OVRGUI.cs" />
@@ -142,6 +143,7 @@
     <None Include="Assets\LeapMotion\Shaders\RimShading.shader" />
     <None Include="Assets\OVR\Shaders\OVRGUIShader.shader" />
     <None Include="Assets\OVR\Shaders\TextShader3D.shader" />
+    <None Include="Assets\OVR\Shaders\Unlit Transparent HUD.shader" />
     <None Include="Assets\Plugins\donotdelete.txt" />
     <None Include="Assets\Plugins\x86\donotdelete.txt" />
     <None Include="Assets\Plugins\x86_64\donotdelete.txt" />
